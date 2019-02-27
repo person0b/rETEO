@@ -1,12 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import createSagaMiddleware from 'redux-saga';
+import { all } from 'redux-saga/effects';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import citiesReducer from './modules/cities/ducks';
+import defaultSagas from './modules/defaultSagas';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import App from './components/App';
+
+const reducer = combineReducers({
+  cities: citiesReducer
+});
+
+const sagaMiddleware = createSagaMiddleware();
+const middlewares = [sagaMiddleware];
+const enhancers = [applyMiddleware(...middlewares)];
+
+const composeEnhancers =
+  process.env.NODE_ENV !== 'production' &&
+  typeof window === 'object' &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        shouldHotReload: false
+      })
+    : compose;
+
+const store = createStore(reducer, {}, composeEnhancers(...enhancers));
+sagaMiddleware.run(function* cb() {
+  yield all(defaultSagas());
+});
+
+const Root = () => {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+};
+
+ReactDOM.render(<Root />, document.getElementById('root'));
