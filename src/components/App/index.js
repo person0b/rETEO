@@ -5,20 +5,20 @@ import { ThemeProvider } from 'styled-components';
 
 import { GlobalStyle } from './styled';
 import * as themes from './themes';
-import * as actions from '../../modules/cities/ducks';
+import * as actions from '../../modules/init/ducks';
 
 import Header from '../../elements/Header';
 import Menu from '../Menu';
-import Search from '../Search';
+// import Search from '../Search';
 import Home from '../Home';
 
-const App = ({ fetchGeolocation }) => {
+const App = ({ fetchInit }) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     if (!mounted) {
+      fetchInit();
       setMounted(true);
-      fetchGeolocation();
     }
   });
   return (
@@ -28,7 +28,7 @@ const App = ({ fetchGeolocation }) => {
           <GlobalStyle />
           <Header>
             <Menu />
-            <Search />
+            {/* <Search /> */}
           </Header>
           <Home />
         </div>
@@ -38,11 +38,8 @@ const App = ({ fetchGeolocation }) => {
 };
 
 export default connect(
-  state => ({
-    geolocation: state.cities.geolocation,
-    geolocationStatus: state.cities.geolocationStatus
-  }),
+  state => ({}),
   {
-    fetchGeolocation: actions.fetchGeolocation
+    fetchInit: actions.fetchInit
   }
 )(App);

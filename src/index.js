@@ -5,13 +5,17 @@ import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import { all } from 'redux-saga/effects';
 
+import initReducer from './modules/init/ducks';
 import citiesReducer from './modules/cities/ducks';
+import weatherReducer from './modules/weather/ducks';
 import defaultSagas from './modules/defaultSagas';
 
 import App from './components/App';
 
 const reducer = combineReducers({
-  cities: citiesReducer
+  init: initReducer,
+  cities: citiesReducer,
+  weather: weatherReducer
 });
 
 const sagaMiddleware = createSagaMiddleware();

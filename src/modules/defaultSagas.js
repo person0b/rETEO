@@ -1,3 +1,7 @@
-import { watchFetchGeolocation } from './cities/saga';
+// import { watchFetchCurrentWeather } from './weather/saga';
+import watchFetchInit from './init/saga';
 
-export default () => [watchFetchGeolocation()];
+export default () => [
+  // watchFetchCurrentWeather(),
+  watchFetchInit()
+];

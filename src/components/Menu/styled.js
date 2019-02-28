@@ -16,12 +16,16 @@ Menu.Item = styled.li`
   margin-left: 20px;
 `;
 
-Menu.Link = styled(Link)`
+Menu.Link = styled.button`
   font-size: 16px;
 
   text-decoration: none;
+
   color: ${props => props.theme.fHigh};
+  background: none;
   transition: 0.3s;
+  border: none;
+  cursor: pointer;
 
   &:hover,
   &:focus {

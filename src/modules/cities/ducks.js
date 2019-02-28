@@ -1,12 +1,12 @@
-export const REQUESTED_GEOLOCATION = `@reteo/REQUESTED_GEOLOCATION`;
-export const REQUESTED_GEOLOCATION_SUCCEEDED = `@reteo/REQUESTED_GEOLOCATION_SUCCEEDED`;
-export const REQUESTED_GEOLOCATION_FAILED = `@reteo/REQUESTED_GEOLOCATION_FAILED`;
-export const REQUESTED_SEARCH = `@reteo/REQUESTED_SEARCH`;
-export const REQUESTED_SEARCH_SUCCEEDED = `@reteo/REQUESTED_SEARCH_SUCCEEDED`;
-export const REQUESTED_SEARCH_FAILED = `@reteo/REQUESTED_SEARCH_FAILED`;
-export const FETCHED_GEOLOCATION = `@reteo/FETCHED_GEOLOCATION`;
-export const FETCHED_SEARCH = `@reteo/FETCHED_GEOLOCATION`;
-export const SELECT_CITY = `@reteo/SELECT_CITY`;
+export const REQUESTED_GEOLOCATION = `@reteo/cities/REQUESTED_GEOLOCATION`;
+export const REQUESTED_GEOLOCATION_SUCCEEDED = `@reteo/cities/REQUESTED_GEOLOCATION_SUCCEEDED`;
+export const REQUESTED_GEOLOCATION_FAILED = `@reteo/cities/REQUESTED_GEOLOCATION_FAILED`;
+export const REQUESTED_SEARCH = `@reteo/cities/REQUESTED_SEARCH`;
+export const REQUESTED_SEARCH_SUCCEEDED = `@reteo/cities/REQUESTED_SEARCH_SUCCEEDED`;
+export const REQUESTED_SEARCH_FAILED = `@reteo/cities/REQUESTED_SEARCH_FAILED`;
+export const FETCHED_GEOLOCATION = `@reteo/cities/FETCHED_GEOLOCATION`;
+export const FETCHED_SEARCH = `@reteo/cities/FETCHED_SEARCH`;
+export const SELECT_CITY = `@reteo/cities/SELECT_CITY`;
 
 export const requestGeolocation = () => {
   return { type: REQUESTED_GEOLOCATION };
@@ -45,9 +45,9 @@ export const selectCity = payload => {
 };
 
 const initialState = {
-  geolocation: null,
-  search: null,
-  select: null,
+  geolocation: {},
+  search: {},
+  select: {},
   geolocationStatus: `none`,
   searchStatus: `none`
 };
